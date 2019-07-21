@@ -1,0 +1,32 @@
+type Query {
+  heroes: [Hero!]!
+  heroTypes: [HeroType!]!
+  origins: [HeroType!]!
+  clazzes: [HeroType!]!
+  findHeroByName: String!
+}
+
+type Hero {
+  id: ID!
+  name: String!
+  tier: Int!
+  origin: HeroType!
+  clazz: HeroType!
+  tertiaryType: HeroType
+}
+
+input HeroTypeInput {
+  name: String,
+  heroTypeType: String
+}
+
+type HeroType {
+  id: ID!
+  heroTypeType: HeroTypeType!
+  name: String!
+}
+
+enum HeroTypeType {
+  CLASS,
+  ORIGIN
+}

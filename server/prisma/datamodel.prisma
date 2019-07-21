@@ -1,0 +1,19 @@
+type Hero {
+  id: ID! @id
+  name: String! @unique
+  tier: Int!
+  origin: HeroType! @relation(name: "HeroesOrigin")
+  clazz: HeroType! @relation(name: "HeroesClazz")
+  tertiaryType: HeroType @relation(name: "HeroesTertiaryType")
+}
+
+type HeroType {
+  id: ID! @id
+  name: String! @unique
+  heroTypeType: HeroTypeType! @relation
+}
+
+enum HeroTypeType {
+  ORIGIN,
+  CLASS
+}

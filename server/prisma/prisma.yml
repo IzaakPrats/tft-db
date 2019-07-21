@@ -1,0 +1,14 @@
+# The HTTP end point for your Prisma API
+#endpoint: ''
+endpoint: https://us1.prisma.sh/izaak-prats-f0191a/tft-db/dev
+
+# Points to the file that contains your datamodel
+datamodel: datamodel.prisma
+
+# Specifieslanguage & location for hte generated Prisma client
+generate:
+  - generator: javascript-client
+    output: ../src/generated/prisma-client
+
+seed:
+  run: node ./prisma/seed.js
