@@ -15,6 +15,7 @@ export type HerosListProps = {
 const HEROES_QUERY = gql`
   {
     heroes {
+      id
       name
       tier
       origin {
@@ -41,7 +42,7 @@ function HerosList(props: HerosListProps) {
 
         return (
           heroesToRender.map((hero) => {
-            return <li>
+            return <li key={hero.id}>
               <HeroCard hero={hero}></HeroCard>
             </li>
           })
