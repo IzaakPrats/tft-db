@@ -1,0 +1,7 @@
+.HeroCardTable {
+  border-collapse: collapse;
+}
+
+.HeroCardTable th, td {
+  border: 1px solid black;
+}

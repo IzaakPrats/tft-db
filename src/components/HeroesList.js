@@ -5,12 +5,8 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import HeroCard from './HeroCard';
-import type {Hero} from '../models/Hero';
-import type {HeroType} from '../models/HeroType';
 
-export type HerosListProps = {
-  heros: [Hero]
-}
+export type HerosListProps = {}
 
 const HEROES_QUERY = gql`
   {
@@ -31,27 +27,21 @@ const HEROES_QUERY = gql`
   }
 `
 
-function HerosList(props: HerosListProps) {
-  const heroCards = props.heros.map((hero) =>
-    <Query query={HEROES_QUERY}>
+export default function HeroesList(props: HerosListProps) {
+    return <Query query={HEROES_QUERY}>
       {({ loading, error, data}) => {
         if (loading) return <div>Fetching</div>
         if (error) return <div>Error</div>
 
         const heroesToRender = data.heroes
 
-        return (
-          heroesToRender.map((hero) => {
-            return <li key={hero.id}>
-              <HeroCard hero={hero}></HeroCard>
-            </li>
-          })
-        )
+        let heroCards = heroesToRender.map((hero) => {
+          return <li key={hero.id}>
+            <HeroCard hero={hero}></HeroCard>
+          </li>
+        })
+
+        return <ul>{heroCards}</ul>
       }}
     </Query>
-  )
-
-  return (
-    <ul>heroCards</ul>
-  )
 }

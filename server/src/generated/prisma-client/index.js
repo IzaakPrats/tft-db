@@ -20,6 +20,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://us1.prisma.sh/izaak-prats-f0191a/tft-db/dev`
+  endpoint: `http://tft-d-publi-1fa7je5wrouy1-629981023.us-west-2.elb.amazonaws.com/server/dev`
 });
 exports.prisma = new exports.Prisma();

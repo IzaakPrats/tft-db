@@ -1,27 +1,20 @@
 // @flow
 
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
+import HeroesTable from './components/HeroesTable'
+import { Header } from './components/Header'
+import { Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="center w85">
+      <Header/>
+       <div className="ph3 pv1 background-gray">
+         <Switch>
+           <Route exact path="/" component={ HeroesTable } />
+         </Switch>
+       </div>
+     </div>
   );
 }
 

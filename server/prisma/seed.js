@@ -1,35 +1,33 @@
 const { prisma } = require('../src/generated/prisma-client')
 
 const origins = [
+  "Demon",
+  "Dragon",
+  "Exile",
+  "Glacial",
+  "Imperial",
+  "Ninja",
+  "Noble",
   "Phantom",
   "Pirate",
   "Robot",
   "Void",
   "Wild",
   "Yordle"
-].map((origin) => {
-  return {
-    name: origin,
-    heroTypeType: "ORIGIN"
-  }
-})
+]
 
 const clazzes = [
-  "Assassin",
-  "Brawler",
-  "Elementalist",
-  "Gaurdian",
-  "Gunslinger",
-  "Knight",
-  "Ranger",
-  "Shapeshifter",
-  "Sorcerer"
-].map((clazz) => {
-  return {
-    name: clazz,
-    heroTypeType: "CLASS"
-  }
-})
+"Assassin",
+"Blademaster",
+"Brawler",
+"Elementalist",
+"Gaurdian",
+"Gunslinger",
+"Knight",
+"Ranger",
+"Shapeshifter",
+"Sorcerer"
+]
 
 let heroes = [
   {
@@ -396,20 +394,19 @@ async function main() {
   // console.log(clazzes)
   // console.log(heroes)
 
-  // for (var i = 0; i < origins.length; i++) {
-  //   await prisma.createHeroType({
-  //     name: origins[i].name,
-  //     heroTypeType: origins[i].heroTypeType
-  //   })
-  // }
+  for (var i = 0; i < origins.length; i++) {
+    await prisma.createHeroType({
+      name: origins[i],
+      heroTypeType: "ORIGIN"
+    })
+  }
 
-  // for (var i = 0; i < clazzes.length; i++) {
-  //   await prisma.createHeroType({
-  //     name: clazzes[i].name,
-  //     heroTypeType: "CLASS"
-  //   })
-  // }
-
+  for (var i = 0; i < clazzes.length; i++) {
+    await prisma.createHeroType({
+      name: clazzes[i],
+      heroTypeType: "CLASS"
+    })
+  }
 
   for (var i = 0; i < heroes.length; i++) {
     let hero = heroes[i]
@@ -426,6 +423,26 @@ async function main() {
         clazz: {
           connect: {
             name: hero.clazz
+          }
+        }
+      })
+    } else {
+      await prisma.createHero({
+        name: hero.name,
+        tier: hero.tier,
+        origin: {
+          connect: {
+            name: hero.origin
+          }
+        },
+        clazz: {
+          connect: {
+            name: hero.clazz
+          }
+        },
+        tertiaryType: {
+          connect: {
+            name: hero.tertiaryType
           }
         }
       })
